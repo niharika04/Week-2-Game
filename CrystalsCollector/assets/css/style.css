@@ -1,0 +1,60 @@
+body {
+	background: url(../images/982720.jpg);
+	background-size: 120%;
+
+
+
+	
+}
+h1 {
+	color : white !important;
+	opacity: 0.8;
+
+}
+
+.card{
+	
+	color: white;
+	background-color: #032741 !important;
+	font-weight: bolder;
+	opacity: 0.8;
+
+}
+
+.card-header {
+	background-color: #671b01 !important;
+	opacity: 0.8;
+}
+h3 {
+	z-index: 99;
+	opacity: 1 !important;
+	color: white;
+}
+.crystal {
+	height:48px;
+	width: 48px;
+}
+
+#random-number {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+#your-score {
+	font-size: 44px;
+	font-weight: bold;
+}
+
+#win-counter {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+#loss-counter {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.btn-secondary {
+	background-color: transparent !important;
+}

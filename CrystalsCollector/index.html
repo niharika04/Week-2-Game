@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Crystal Collector Game</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	
+</head>
+<body>
+	<style type="text/css">
+		
+	</style>
+	<br>
+	<header>
+		<div class="container text-center">
+			<h1>Crystal Collector!</h1>
+		</div>
+	</header>
+	<br>
+	
+	<div class="container">
+		
+		<div class="card">
+			<div class="card-header">
+				<h3>Instructions</h3>
+			</div>
+			<div class="card-block">
+				<ol class="card-text">
+					<li>You will be given a target number at the start of the game.</li>
+					
+					<li>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</li>
+					
+					<li>You win the game by matching your total score to target number, you lose the game if your total score goes above the number.</li>
+					
+
+					<li>The value of each crystal is hidden from you until you click on it.</li>
+					
+
+					<li>Each time when the game starts, the game will change the values of each crystal.</li>
+				</ol>
+			</div>
+		</div>
+		<br>
+		<div class="card">
+			<div class="card-header">
+				<h3>Target Number</h3>
+			</div>
+			<div class="card-block">
+				<div class="card-text text-center" id="random-number"></div>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<h3>Your total score is :</h3>
+					</div>
+					<div class="card-block">
+						<div class="card-text text-center" id="your-score">00</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<h3>Pick a Crystal and get the Score!</h3>
+					</div>
+					<div class="card-block">
+						<div class="card-text text-center" id="buttons">
+							<button id="button-1" class="btn btn-secondary"><img  src="assets/images/crystal  1.png" class="crystal"></button>
+							<button id="button-2" class="btn btn-secondary"><img src="assets/images/crystal 2.png" class="crystal"></button>
+							<button id="button-3" class="btn btn-secondary"><img src="assets/images/crystal 3.png" class="crystal"></button>
+							<button id="button-4" class="btn btn-secondary"><img src="assets/images/crystal 4.png" class="crystal"></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header text-center">
+						<h3>Wins</h3>
+					</div>
+					<div class="card-block">
+						<div class="card-text text-center" id="win-counter">0</div>
+					</div>
+				</div>			
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header text-center">
+						<h3>Losses</h3>
+					</div>
+					<div class="card-block">
+						<div class="card-text text-center" id="loss-counter">0</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	
+
+
+	 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	 <script type="text/javascript" >
+	 	$(document).ready(function(){
+	 		//initial variables
+	 		
+	 		var targetNumber;	 			 		
+	 		var counter = 0;	 		
+	 		var numberOptions = [3, 5, 7, 10]
+	 		var win = 0;
+	 		var lose = 0;
+	 		var increment = 0;
+	 		function startGame() {
+	 			targetNumber = Math.floor(Math.random() * 100)+1;
+	 			$("#random-number").text(targetNumber);	 
+	 			;
+	 			
+	 		
+	 		}
+	 		var increment = numberOptions[Math.floor(Math.random()*numberOptions.length)];	
+	 		$("#buttons").on("click" , function() {
+	 			
+	 			counter += increment;
+	 			
+	 			console.log(counter);
+
+	 			$("#your-score").text(counter);
+	 		
+	 			
+	 			
+	 				
+		 			if (counter === targetNumber) {
+		 				alert("Great! you got that right.");
+		 				win++;
+		 				$("#win-counter").text(win);
+		 				startGame();
+
+		 			} else if( counter >= targetNumber) {
+		 				alert("You lost this one!");
+		 				lose++;
+		 				$("#loss-counter").text(lose);
+		 				startGame();
+		 			
+	 			}
+
+			})
+	 	startGame();	
+	 	
+	 		
+ 	});
+	 </script>
+
+</body>
+</html>
