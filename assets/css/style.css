@@ -31,8 +31,13 @@ h3 {
 	color: white;
 }
 .crystal {
-	height:48px;
-	width: 48px;
+	height:64px;
+	width: 50px;
+}
+
+#buttons {
+	display: flex;
+	justify-content: space-around;
 }
 
 #random-number {
