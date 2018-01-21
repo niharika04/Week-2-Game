@@ -74,10 +74,10 @@
 					</div>
 					<div class="card-block">
 						<div class="card-text text-center" id="buttons">
-							<button id="button-1" class="btn btn-secondary"><img  src="assets/images/crystal  1.png" class="crystal"></button>
+							<!-- <button id="button-1" class="btn btn-secondary"><img  src="assets/images/crystal  1.png" class="crystal"></button>
 							<button id="button-2" class="btn btn-secondary"><img src="assets/images/crystal 2.png" class="crystal"></button>
 							<button id="button-3" class="btn btn-secondary"><img src="assets/images/crystal 3.png" class="crystal"></button>
-							<button id="button-4" class="btn btn-secondary"><img src="assets/images/crystal 4.png" class="crystal"></button>
+							<button id="button-4" class="btn btn-secondary"><img src="assets/images/crystal 4.png" class="crystal"></button> -->
 						</div>
 					</div>
 				</div>
@@ -128,16 +128,24 @@
 	 		function startGame() {
 	 			targetNumber = Math.floor(Math.random() * 100)+1;
 	 			$("#random-number").text(targetNumber);	 
-	 			;
+	 			counter = 0;
 	 			
-	 		
 	 		}
-	 		var increment = numberOptions[Math.floor(Math.random()*numberOptions.length)];	
-	 		$("#buttons").on("click" , function() {
+	 		for (var i=0; i<numberOptions.length; i++) {
+	 			var imageCrystal = $("<img>");
+	 			imageCrystal.addClass("crystal");
+	 			imageCrystal.attr("src" , "assets/images/crystal  1.png");
+	 			imageCrystal.attr("data-crystalvalue" , numberOptions[i]);
+	 		
+	 		// var increment = numberOptions[Math.floor(Math.random()*numberOptions.length)];	
+	 		$("#buttons").append(imageCrystal);
+
+	 		$(".crystal").on("click" , function() {
+	 			var crystalValue = ($(this).attr("data-crystalvalue"));
+	 			crystalValue=parseInt(crystalValue);
+	 			counter += crystalValue;
 	 			
-	 			counter += increment;
-	 			
-	 			console.log(counter);
+	 			console.log(crystalValue);
 
 	 			$("#your-score").text(counter);
 	 		
@@ -146,19 +154,21 @@
 	 				
 		 			if (counter === targetNumber) {
 		 				alert("Great! you got that right.");
+		 				startGame();
 		 				win++;
 		 				$("#win-counter").text(win);
-		 				startGame();
+		 				
 
 		 			} else if( counter >= targetNumber) {
 		 				alert("You lost this one!");
+		 				startGame();
 		 				lose++;
 		 				$("#loss-counter").text(lose);
-		 				startGame();
+		 				
 		 			
 	 			}
-
-			})
+	 		})
+		}
 	 	startGame();	
 	 	
 	 		
