@@ -119,60 +119,62 @@
 	 	$(document).ready(function(){
 	 		//initial variables
 	 		
-	 		var targetNumber;	 			 		
-	 		var counter = 0;	 		
-	 		var numberOptions = [3, 5, 7, 10]
-	 		var win = 0;
-	 		var lose = 0;
-	 		var increment = 0;
-	 		function startGame() {
-	 			targetNumber = Math.floor(Math.random() * 100)+1;
-	 			$("#random-number").text(targetNumber);	 
-	 			counter = 0;
-	 			
-	 		}
-	 		for (var i=0; i<numberOptions.length; i++) {
-	 			var imageCrystal = $("<img>");
-	 			imageCrystal.addClass("crystal");
-	 			imageCrystal.attr("src" , "assets/images/crystal  1.png");
-	 			imageCrystal.attr("data-crystalvalue" , numberOptions[i]);
-	 		
-	 		// var increment = numberOptions[Math.floor(Math.random()*numberOptions.length)];	
-	 		$("#buttons").append(imageCrystal);
+	 	var targetNumber;
+             var counter = 0;
+             // var numberOptions = [3, 5, 7, 10]
+             var win = 0;
+             var lose = 0;
+             var increment = 0;
+             var images = ["assets/images/crystal  1.png", "assets/images/crystal 2.png", "assets/images/crystal 3.png", "assets/images/crystal 4.png"];
+             function startGame() {
+                 targetNumber = Math.floor(Math.random() * 100)+1;
+                 $("#random-number").text(targetNumber);
+                 counter = 0;
+                $("#your-score").text(counter);
 
-	 		$(".crystal").on("click" , function() {
-	 			var crystalValue = ($(this).attr("data-crystalvalue"));
-	 			crystalValue=parseInt(crystalValue);
-	 			counter += crystalValue;
-	 			
-	 			console.log(crystalValue);
+             }
+             for (var i=0; i<4; i++) {
+                 var imageCrystal = $("<img>");
+                 imageCrystal.addClass("crystal");
+                imageCrystal.attr("src" , images[i]);
+                 imageCrystal.attr("data-crystalvalue" , Math.floor(Math.random() * 15)+1);
 
-	 			$("#your-score").text(counter);
-	 		
-	 			
-	 			
-	 				
-		 			if (counter === targetNumber) {
-		 				alert("Great! you got that right.");
-		 				startGame();
-		 				win++;
-		 				$("#win-counter").text(win);
-		 				
+             // var increment = numberOptions[Math.floor(Math.random()*numberOptions.length)];
+             $("#buttons").append(imageCrystal);
+        }
+             $(".crystal").on("click" , function() {
+                 var crystalValue = ($(this).attr("data-crystalvalue"));
+                 crystalValue=parseInt(crystalValue);
+                 counter += crystalValue;
 
-		 			} else if( counter >= targetNumber) {
-		 				alert("You lost this one!");
-		 				startGame();
-		 				lose++;
-		 				$("#loss-counter").text(lose);
-		 				
-		 			
-	 			}
-	 		})
-		}
-	 	startGame();	
-	 	
-	 		
- 	});
+                 console.log(crystalValue);
+
+                 $("#your-score").text(counter);
+
+
+
+
+                     if (counter === targetNumber) {
+                         alert("Great! you got that right.");
+                         startGame();
+                         win++;
+                         $("#win-counter").text(win);
+
+
+                     } else if( counter >= targetNumber) {
+                         alert("You lost this one!");
+                         startGame();
+                         lose++;
+                         $("#loss-counter").text(lose);
+
+
+                 }
+             })
+
+         startGame();
+
+
+     });
 	 </script>
 
 </body>
