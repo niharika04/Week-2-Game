@@ -8,8 +8,12 @@ The player will have to guess the answer, just like in Hangman. This time, thoug
 
 
 Built With
+
 HTML
+
 CSS
+
 Javascript
+
 jQuery
-Authors
+
